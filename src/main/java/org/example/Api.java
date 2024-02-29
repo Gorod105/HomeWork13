@@ -9,6 +9,8 @@ import org.example.response.PostResponseDto;
 import org.example.response.TodosResponseDto;
 import org.example.response.UserResponseDto;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -114,6 +116,12 @@ public class Api {
                 .build();
         HttpResponse<String> commentResponse = httpClient.send(getCommentRequest, HttpResponse.BodyHandlers.ofString());
         System.out.println("statusCode = " + commentResponse.statusCode());
+        String allComments = commentResponse.body();
+        File newFile = new File("user-" + id + "-post-" + lastPostId +  "-comments.json");
+        newFile.createNewFile();
+        FileWriter fileWriter = new FileWriter(newFile);
+        fileWriter.write(allComments);
+        fileWriter.flush();
         List<CommentResponseDto> commentResponseDtos = objectMapper.readValue(commentResponse.body(),
                 objectMapper.getTypeFactory().constructCollectionType(List.class, CommentResponseDto.class));
 

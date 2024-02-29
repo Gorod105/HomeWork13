@@ -33,7 +33,7 @@ public class Demo {
 //                        .build())
 //                .build();
 //        System.out.println(Api.changeUser(newUser , 5L));
-        System.out.println(Api.getAllNeedToDo(1L));
+        System.out.println(Api.getAllLastPostComments(1L));
 
     }
 }
