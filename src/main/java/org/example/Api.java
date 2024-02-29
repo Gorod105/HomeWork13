@@ -118,7 +118,6 @@ public class Api {
         System.out.println("statusCode = " + commentResponse.statusCode());
         String allComments = commentResponse.body();
         File newFile = new File("user-" + id + "-post-" + lastPostId +  "-comments.json");
-        newFile.createNewFile();
         FileWriter fileWriter = new FileWriter(newFile);
         fileWriter.write(allComments);
         fileWriter.flush();
